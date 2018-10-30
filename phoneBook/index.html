@@ -1,0 +1,84 @@
+<html ng-app="phoneBook">
+<head>
+    <title>Phone Book</title>
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+    <style>
+        .jumbotron {
+            width: 400px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .table{
+            margin-top: 20px;
+        }
+        .form-control{
+            margin-bottom: 15px;
+        }
+        .btn{
+            margin-top: 20px;
+        }
+    </style>
+    <script src="lib/angular/angular.js"></script>
+    <script>
+        angular.module("phoneBook", []);
+        angular.module("phoneBook").controller("phoneBookCtrl", function ($scope) {
+            $scope.app = "Phone Book";
+            $scope.contacts = [
+                {name:"John", phone: "999989009"},
+                {name:"Ann", phone: "999989679"},
+                {name:"Bob", phone: "999867549"},
+            ];
+            $scope.companies = [
+                {name: "Oi" , code: "14" },
+                {name: "Vivo" , code: "15" },
+                {name: "Tim" , code: "41" }
+            ]
+            $scope.addContact = function (contact) {
+                $scope.contacts.push(angular.copy(contact));
+                delete $scope.contact;
+            };
+        });
+    </script>
+</head>
+<body ng-controller="phoneBookCtrl">
+    <div class="jumbotron">
+        <h3>{{app}}</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Company</th>
+            </tr>
+            <tr ng-repeat="contact in contacts">
+                <td>{{contact.name}}</td>
+                <td>{{contact.phone}}</td>
+                <td>{{contact.company.name}}</td>
+            </tr>
+        </table>
+        <hr/>
+        <input 
+            class="form-control" 
+            type="text" 
+            ng-model="contact.name" 
+            placeholder="Name"
+            />
+        <input 
+            class="form-control" 
+            type="text" 
+            ng-model="contact.phone" 
+            placeholder="Phone Number"
+            />
+        <select class="form-control" ng-model="contact.company" ng-options="company.name for company in companies">
+            <option selected disabled value="">Select a company</option>
+        </select>
+        <button 
+            class="btn btn-dark btn-block" 
+            ng-click="addContact(contact)" 
+            ng-disabled="!contact.name || !contact.phone">
+            Adicionar Contato
+        </button>
+    </div>
+</body>
+</html>
