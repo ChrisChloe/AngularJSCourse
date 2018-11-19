@@ -1,0 +1,107 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "name": "John",
+      "phone": "9999-2222",
+      "date": "2015-04-12T12:53:46.2048",
+      "company": {
+        "name": "Oi",
+        "code": "14",
+        "category": "Cellphone"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Sandra",
+      "phone": "9999-2222",
+      "date": "2015-04-12T12:53:46.2048",
+      "company": {
+        "name": "Oi",
+        "code": "14",
+        "category": "Cellphone"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Mary",
+      "phone": "9999-2222",
+      "date": "2015-04-12T12:53:46.2048",
+      "company": {
+        "name": "Oi",
+        "code": "14",
+        "category": "Cellphone"
+      }
+    },
+    {
+      "name": "Bodega Bamz",
+      "company": {
+        "name": "Claro",
+        "code": "27",
+        "category": "Phone",
+        "price": 1
+      },
+      "phone": "9825-2057",
+      "data": "2018-11-01T12:22:31.113Z",
+      "id": 4
+    },
+    {
+      "name": "Bobby with dat tool",
+      "phone": "12312-3132",
+      "company": {
+        "name": "Claro",
+        "code": "27",
+        "category": "Phone",
+        "price": 1
+      },
+      "serial": "JGPOH",
+      "date": "2018-11-19T14:23:29.870Z",
+      "id": 5
+    },
+    {
+      "name": "cHristIan da silvA",
+      "phone": "12321-2143",
+      "company": {
+        "name": "Claro",
+        "code": "27",
+        "category": "Phone",
+        "price": 1
+      },
+      "serial": "&\"CWZ",
+      "date": "2018-11-19T14:30:01.833Z",
+      "id": 6
+    }
+  ],
+  "companies": [
+    {
+      "name": "Oi",
+      "code": "14",
+      "category": "Cellphone",
+      "price": 2
+    },
+    {
+      "name": "Vivo",
+      "code": "15",
+      "category": "Cellphone",
+      "price": 1
+    },
+    {
+      "name": "Tim",
+      "code": "41",
+      "category": "Cellphone",
+      "price": 3
+    },
+    {
+      "name": "Claro",
+      "code": "27",
+      "category": "Phone",
+      "price": 1
+    },
+    {
+      "name": "GVT",
+      "code": "82",
+      "category": "Phone",
+      "price": 2
+    }
+  ]
+}
