@@ -70,6 +70,32 @@
       "serial": "&\"CWZ",
       "date": "2018-11-19T14:30:01.833Z",
       "id": 6
+    },
+    {
+      "name": "Chrissy Chris",
+      "phone": "32134-3223",
+      "date": "2018-11-29T12:35:16.859Z",
+      "company": {
+        "name": "Claro",
+        "code": "27",
+        "category": "Phone",
+        "price": 1
+      },
+      "serial": "?BE+0",
+      "id": 7
+    },
+    {
+      "name": "Chris O'Shea",
+      "phone": "8293-2131",
+      "date": 1527044400000,
+      "company": {
+        "name": "Vivo",
+        "code": "15",
+        "category": "Cellphone",
+        "price": 1
+      },
+      "serial": "F)]MY",
+      "id": 8
     }
   ],
   "companies": [

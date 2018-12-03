@@ -1,13 +1,14 @@
-angular.module("phoneBook").provider("serialGenerator", function () {
+angular.module("serialGenerator", []);
+angular.module("serialGenerator").provider("serialGenerator", function () {
     var _length = 10;
     
     this.getLength = function () {
-         return _length
+         return _length;
     };
 
     this.setLength = function (length) {
         _length = length;
-   }
+   };
 
     this.$get = function () {
         return {

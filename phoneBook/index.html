@@ -6,113 +6,35 @@
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="css/ui.css">
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-route.js"></script>
     <script src="lib/angular/angular-messages.js"></script>
     <script src="lib/angular/angular-locale_pt-br.js"></script>
+    <script src="lib/serialGenerator/serialGenerator.js"></script>
+    <script src="lib/ui/ui.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/phoneBookCtrl.js"></script>
+    <script src="js/controllers/contactDetailsCtrl.js"></script>
     <script src="js/services/contactsAPISservice.js"></script>
     <script src="js/services/companiesAPIService.js"></script>
-    <script src="js/services/serialGeneratorService.js"></script>
     <script src="js/config//serialGeneratorConfig.js"></script>
+    <script src="js/config/routeConfig.js"></script>
     <script src="js/filters/nameFilter.js"></script>
     <script src="js/filters/ellipsisFilter.js"></script>
     <script src="js/directives/uiAlertDirective.js"></script>
+    <script src="js/directives/uiDateDirective.js"></script>
+    <script src="js/interceptors/timestampInterceptor.js"></script>
+    <script src="js/config/interceptorsConfig.js"></script>
+    <script src="js/interceptors/errorInterceptor.js"></script>
+    <script src="js/interceptors/loadingInterceptor.js"></script>
     <script src="js/configValue.js"></script>
 </head>
-<body ng-controller="phoneBookCtrl">
-    <div class="jumbotron">
-        <h3>{{app}}</h3>
-
-        <ui-alert title="Ops, houve um problema!" message="message">
-            Não foi possível carregar os dados
-        </ui-alert>
-  
-        <input class="form-control" type="text" ng-model="searchTerm" placeholder="O que você está buscando?"/>
-        <table class="table">
-            <tr>
-                <th></th>
-                <th>Serial</th>
-                <th><a href="" ng-click="orderBy('name')">Name</a></th>
-                <th><a href="" ng-click="orderBy('phone')">Phone</a></th>
-                <th>Company</th>
-                <th>Date</th>
-            </tr>
-            <tr ng-class="{selected: contact.selected}" ng-repeat="contact in contacts | filter:{name: searchTerm} | orderBy:orderCriteria:orderDirection">
-                <td><input type="checkbox" ng-model="contact.selected"></td>
-                <td>{{contact.serial}}</td>
-                <td>{{contact.name | name | ellipsis:10}}</td>
-                <td>{{contact.phone}}</td>
-                <td>{{contact.company.name | lowercase}}</td>
-                <td>{{contact.date | date:'dd/MM/yyyy HH:mm'}}</td>
-            </tr>
-        </table>
-        <hr/>
-        <form name="contactForm">
-            <input 
-                class="form-control" 
-                type="text" 
-                name="name"
-                ng-model="contact.name"
-                ng-required=true; 
-                ng-minlength="10"
-                placeholder="Name"
-                />
-            <input 
-                class="form-control" 
-                type="text" 
-                name="phone"
-                ng-model="contact.phone" 
-                ng-required=true; 
-                ng-pattern="/^\d{4,5}-\d{4}$/"
-                placeholder="Phone Number"
-                />
-            <input 
-                class="form-control" 
-                type="text" 
-                name="date"
-                ng-model="contact.date" 
-                ng-required=true; 
-                placeholder="Date"
-                ui-date 
-                />
-            <select 
-                class="form-control"
-                name="company" 
-                ng-model="contact.company"
-                ng-required=true;  
-                ng-options="company.name + ' ( ' + (company.price | currency) + ' )' group by company.category for company in companies | orderBy:'name'">
-                <option selected disabled value="">Select a company</option>
-            </select>
-        </form>
-            
-        <div ng-messages="contactForm.name.$dirty">
-            <div ng-message="required" class="alert alert-danger">
-                Por favor, preencha o campo nome!
-            </div>
-            <div ng-message="minlength" class="alert alert-danger">
-                    O campo nome deve ter no mínimo 10 caracteres.
-            </div>
-        </div>
-            
-            <div ng-show="contactForm.phone.$error.required && contactForm.phone.$dirty" class="alert alert-danger">
-                    Por favor, preencha o campo telefone!
-            </div>
-            <div ng-show="contactForm.phone.$error.pattern" class="alert alert-danger">
-                    O campo telefone deve ter o formato 99999-9999.
-            </div>
-        <button 
-            class="btn btn-dark btn-block" 
-            ng-click="addContact(contact)" 
-            ng-disabled="contactForm.$invalid" >
-            Adicionar Contato
-        </button>
-        <button 
-            class="btn btn-danger btn-block" 
-            ng-click="deleteContact(contacts)"
-            ng-show="isContactSelected(contacts)"> 
-            Apagar Contatos
-        </button>
+<body>
+    <div class="jumbotron" ng-show="loading">
+        <h3>Loading, please wait...</h3>
     </div>
-    <!-- <div ng-include="'view/footer.html'"></div> -->
+    <div ng-hide="loading">
+        <div ng-view></div>
+        <div ng-include="'view/footer.html'"></div>
+    </div>  
 </body>
 </html>
